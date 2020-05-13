@@ -1,26 +1,98 @@
-import React from 'react';
-import logo from './logo.svg';
+//imported dependancies
+import React, {Component} from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+//imported styles
 import './App.css';
 
-function App() {
+//imported components
+import Store from './Components/Store.js'
+import Cart from './Components/Cart.js'
+import ProductDetails from './Components/ProductDetails.js'
+
+
+class App extends Component {  
+
+  constructor(props) {
+      super(props);
+
+// state
+  this.state = {
+    data: [],
+    lineItems: [],
+    cartOpen: false,
+  };
+}
+
+//api details
+async fetchMyData() {
+  const apiKey = "key1dezf5D1nmv7o2";
+  try {
+    const response = await fetch(`https://api.airtable.com/v0/appBVzVpV6uFwQnJF/products?api_key=${apiKey}`);
+    const apiData = await response.json();
+
+    this.setState({
+      data: apiData.records,
+    })
+  } catch(error) {
+    console.log(error)
+  }
+  console.log(this.state.data);
+}
+
+
+componentDidMount() {
+  //call api
+  this.fetchMyData();
+};
+
+//functions
+toggleCart = () => {
+  const cartNewState = !this.state.cartOpen
+  this.setState({
+    cartOpen: cartNewState
+  }, () => {console.log('updated!')})
+}
+
+addToCart = (product) => {
+  this.setState({
+    lineItems: [...this.state.lineItems, product]
+  })
+}
+
+
+render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <nav>
+        <span onClick={this.toggleCart} className="cartToggle">Cart ({this.state.lineItems.length})</span>
+        {this.state.cartOpen && <Cart apiData={this.state.data} lineItems={this.state.lineItems} />}
+      </nav>
+      {/* <header>
+      <h1>Helloo i am a header</h1>
+      </header> */}
+      <Router>
+        <Switch>
+        <Route
+          exact path='/products/:product_id'
+          // exact path={`/products/${this.state.data.key}`}
+          render={(props) => <ProductDetails {...props} apiData={this.state.data} />}
+        />
+        <Route
+          exact path='/'
+          render={(props) => <Store {...props} apiData={this.state.data} apiKey={"key1dezf5D1nmv7o2"} addToCart={this.addToCart} />}
+        />
+
+        </Switch>
+      </Router>
+    </>
   );
+}
 }
 
 export default App;

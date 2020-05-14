@@ -6,7 +6,7 @@ const Product = (props) => {
     const {name, price, salePrice, key, category, description, image, rating, ingredientsList, ingredientsTags} = props.product;
     const {addToCart} = props;
     const { id } = props;
-    console.log(id);
+    // console.log(id);
     return(
         <div className="productCard" >
             {/* <Link to={`/products/${props.product.key}`}> */}

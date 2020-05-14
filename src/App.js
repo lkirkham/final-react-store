@@ -35,10 +35,11 @@ async fetchMyData() {
   try {
     const response = await fetch(`https://api.airtable.com/v0/appBVzVpV6uFwQnJF/products?api_key=${apiKey}`);
     const apiData = await response.json();
-
+    
     this.setState({
       data: apiData.records,
     })
+    
   } catch(error) {
     console.log(error)
   }

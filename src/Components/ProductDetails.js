@@ -4,9 +4,6 @@ const ProductDetails = (props) => {
 
     const { apiData } = props;
     const { apiKey } = props;
-    // console.log(apiData);
-    // const {name, price, salePrice, key, category, description, image, rating, ingredientsList, ingredientsTags} = apiData;
-    // console.log(props.match.params.product_id);
     const id = props.match.params.product_id;
     console.log(id);
 
@@ -18,8 +15,15 @@ const ProductDetails = (props) => {
 //   })
 
 
-const filteredApiData = apiData
+//convert to filtered data
+// console.log(apiData)
+
+const matchedProduct = apiData.length >= 0
+? apiData
 .find(value => value.id == id)
+: null;
+
+const filteredApiData = matchedProduct ? matchedProduct.fields : null;
 
 console.log(filteredApiData);
 
@@ -27,22 +31,10 @@ console.log(filteredApiData);
 // .filter(value => value.id == id)
 
 
-
-//   const productDetailsData = filteredApiData.fields;
-
-//DARSHANA - why don't these workkkkkkkkk!? AHH. 
-//   console.log(filteredApiData.id);
-//   console.log(filteredApiData.title);
-//   console.log(filteredApiData.fields.title);
-//   console.log(filteredApiData.fields);
-//   console.log(filteredApiData.fields.id);
-
-
-
     return(
         <div>
           <h1>This is the page for product id {id}</h1>
-          <h2>product name:  </h2>
+          <h2>product name: </h2>
         </div>
     );
     }

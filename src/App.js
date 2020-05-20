@@ -30,39 +30,39 @@ class App extends Component {
 }
 
 //api details (ORIGINAL)
-// async fetchMyData() {
-//   const apiKey = "key1dezf5D1nmv7o2";
-//   try {
-//     const response = await fetch(`https://api.airtable.com/v0/appBVzVpV6uFwQnJF/products?api_key=${apiKey}`);
-//     const apiData = await response.json();
-//     this.setState({
-//       data: apiData.records,
-//     })
-//   } catch(error) {
-//     console.log(error)
-//   }
-//   console.log(this.state.data);
-// }
+async fetchMyData() {
+  const apiKey = "key1dezf5D1nmv7o2";
+  try {
+    const response = await fetch(`https://api.airtable.com/v0/appBVzVpV6uFwQnJF/products?api_key=${apiKey}`);
+    const apiData = await response.json();
+    this.setState({
+      data: apiData.records,
+    })
+  } catch(error) {
+    console.log(error)
+  }
+  console.log(this.state.data);
+}
 
 // api details (MY ATTEMPT TO GET A PROMISE & RESOLVE IT - bbut it looks like just the same code as above just written a bit diffferently.....)
-async fetchMyData() {
-  async function asyncData() {
-    const apiKey = "key1dezf5D1nmv7o2";
-    const response = await fetch(`https://api.airtable.com/v0/appBVzVpV6uFwQnJF/products?api_key=${apiKey}`);
-    const data = await response.json();
-    return data;
-  } 
+// async fetchMyData() {
+//   async function asyncData() {
+//     const apiKey = "key1dezf5D1nmv7o2";
+//     const response = await fetch(`https://api.airtable.com/v0/appBVzVpV6uFwQnJF/products?api_key=${apiKey}`);
+//     const data = await response.json();
+//     return data;
+//   } 
   
-  (async () => {
-    const result = await asyncData();
-    console.log(result.records);
-    const apiData = result.records;
-    this.setState({
-    data: apiData,
-    })
-  })()
+//   (async () => {
+//     const result = await asyncData();
+//     console.log(result.records);
+//     const apiData = result.records;
+//     this.setState({
+//     data: apiData,
+//     })
+//   })()
 
-}
+// }
 
 
 componentDidMount() {
@@ -102,11 +102,17 @@ render(){
           // exact path={`/products/${this.state.data.key}`}
           render={(props) => <ProductDetails {...props} apiData={this.state.data} />}
         />
-        <Route
+        {this.state.data.length >= 0 
+          ? 
+           <Route
+              exact path='/'
+              render={(props) => <Store {...props} apiData={this.state.data} apiKey={"key1dezf5D1nmv7o2"} addToCart={this.addToCart} />}
+            />
+          : null}
+        {/* <Route
           exact path='/'
           render={(props) => <Store {...props} apiData={this.state.data} apiKey={"key1dezf5D1nmv7o2"} addToCart={this.addToCart} />}
-        />
-
+        /> */}
         </Switch>
       </Router>
     </>

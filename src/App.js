@@ -98,21 +98,17 @@ render(){
       <Router>
         <Switch>
         <Route
+              exact path='/'
+              render={(props) => <Store {...props} apiData={this.state.data} apiKey={"key1dezf5D1nmv7o2"} addToCart={this.addToCart} />}
+            />
+        {this.state.data.length >= 0 
+          ? 
+        <Route
           exact path='/products/:product_id'
           // exact path={`/products/${this.state.data.key}`}
           render={(props) => <ProductDetails {...props} apiData={this.state.data} />}
         />
-        {this.state.data.length >= 0 
-          ? 
-           <Route
-              exact path='/'
-              render={(props) => <Store {...props} apiData={this.state.data} apiKey={"key1dezf5D1nmv7o2"} addToCart={this.addToCart} />}
-            />
-          : null}
-        {/* <Route
-          exact path='/'
-          render={(props) => <Store {...props} apiData={this.state.data} apiKey={"key1dezf5D1nmv7o2"} addToCart={this.addToCart} />}
-        /> */}
+        : null}
         </Switch>
       </Router>
     </>

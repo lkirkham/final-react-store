@@ -29,21 +29,39 @@ class App extends Component {
   };
 }
 
-//api details
+//api details (ORIGINAL)
+// async fetchMyData() {
+//   const apiKey = "key1dezf5D1nmv7o2";
+//   try {
+//     const response = await fetch(`https://api.airtable.com/v0/appBVzVpV6uFwQnJF/products?api_key=${apiKey}`);
+//     const apiData = await response.json();
+//     this.setState({
+//       data: apiData.records,
+//     })
+//   } catch(error) {
+//     console.log(error)
+//   }
+//   console.log(this.state.data);
+// }
+
+// api details (MY ATTEMPT TO GET A PROMISE & RESOLVE IT - bbut it looks like just the same code as above just written a bit diffferently.....)
 async fetchMyData() {
-  const apiKey = "key1dezf5D1nmv7o2";
-  try {
+  async function asyncData() {
+    const apiKey = "key1dezf5D1nmv7o2";
     const response = await fetch(`https://api.airtable.com/v0/appBVzVpV6uFwQnJF/products?api_key=${apiKey}`);
-    const apiData = await response.json();
-    
+    const data = await response.json();
+    return data;
+  } 
+  
+  (async () => {
+    const result = await asyncData();
+    console.log(result.records);
+    const apiData = result.records;
     this.setState({
-      data: apiData.records,
+    data: apiData,
     })
-    
-  } catch(error) {
-    console.log(error)
-  }
-  console.log(this.state.data);
+  })()
+
 }
 
 

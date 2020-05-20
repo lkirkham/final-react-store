@@ -1,22 +1,11 @@
 import React from 'react';
+import { render } from '@testing-library/react';
 
 const ProductDetails = (props) => {
-
     const { apiData } = props;
     const { apiKey } = props;
     const id = props.match.params.product_id;
     console.log(id);
-
-    //filter through data 
-// const filteredApiData = apiData.filter((value) => {
-//     console.log('IM RUNNING');
-//     // console.log(value)
-//     return value.id == id;
-//   })
-
-
-//convert to filtered data
-// console.log(apiData)
 
 const matchedProduct = apiData.length >= 0
 ? apiData
@@ -25,12 +14,13 @@ const matchedProduct = apiData.length >= 0
 
 const filteredApiData = matchedProduct ? matchedProduct.fields : null;
 
-console.log(filteredApiData);
+//here's what's not working (want to access the keys to fill the template below):
+// console.log(filteredApiData.fields);
+// console.log(filteredApiData.fields);
+// console.log(filteredApiData.fields.name);
+// console.log(filteredApiData.name);
 
-//or you could.....
-// .filter(value => value.id == id)
-
-
+render()
     return(
         <div>
           <h1>This is the page for product id {id}</h1>

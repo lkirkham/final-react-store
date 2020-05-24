@@ -2,26 +2,27 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 const Product = (props) => {
-    //  console.log(props.product)
-    const {name, price, salePrice, key, category, description, image, rating, ingredientsList, ingredientsTags} = props.product;
+    const {name, price, salePrice, key, category, container, description, image, rating, ingredientsList, ingredientsTags} = props.product;
     const {addToCart} = props;
     const { id } = props;
-    // console.log(id);
     return(
         <div className="productCard" >
-            {/* <Link to={`/products/${props.product.key}`}> */}
             <Link to={`/products/${id}`}>
-            <img className="productCardImage" src={image[0].url} alt={name}/>
+            {image
+          ? <img className="productCardImage" src={image[0].url} alt={name}/>
+          : <h2>theres no image for this product</h2> //insert generic product shot instead
+          }
             <div className="productCardCopy">
-            <h2>{name}</h2>
-            <p>${price}</p>
-            {/* <p>${salePrice}</p> */}
-            {/* {console.log(price)} */}
-            {/* below use an anonymous callback function to return addtoCart so its not called immediately */}
-            <button onClick={() => addToCart(props.product)}>Add to Cart</button>
-                <button>See Full Details</button>
+            <h5 className="cardCategory">{category}</h5>
+            <h2 className="cardTitle">{name}</h2>
             </div>
             </Link>
+            <div className="cardPricing">
+        {/* <p className="cardPrice">${price} /{container}</p> */}
+        {/* <p className="cardPrice">${price}</p> */}
+            <button className="bLight" onClick={() => addToCart(props.product)}>Add to Cart</button>
+            </div>
+
         </div>
     )
 }

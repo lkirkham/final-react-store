@@ -10,10 +10,160 @@ html{
   font-size: 62.5%;
 }
 
-h2{
-  font-size: 1.8rem;
 
+/* TYPOGRAPHY */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap');
+@import url('https://use.typekit.net/sop7ryj.css');
+
+h1 {
+  font-size: 3rem;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  color: #2b2d2f;
 }
+
+h2{
+  font-size: 1.4rem;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  color: #2b2d2f;
+}
+
+h5{
+  font-size: 1rem;
+  margin:5px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #808080 ;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+p {
+  font-size: 1.6rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  color: #808080 ;  
+}
+
+header h1 {
+  font-size:4rem;
+  margin: 0;
+  font-family: starling, serif;
+  text-transform: lowercase;
+  text-align:center;
+  color: #fff;
+}
+
+.white {
+  color:white;
+}
+
+
+/* GLOBAL */
+
+.logo {
+  text-transform: lowercase;
+  font-family: starling, serif;
+  color: #fff;
+  font-size: 2rem;
+  margin:0;
+}
+
+.wrapper{
+  margin: 0 auto;
+  width: 80%;
+  height:100%;
+}
+
+button {
+  padding:10px 25px;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  transition: all 0.5s;
+}
+
+.bLight {
+  color: #2b2d2f;
+  background-color: transparent;
+  
+}
+
+.bDark {
+  color: #fff;
+  background-color: transparent;
+}
+
+button.bLight:hover {
+  background-color: #2b2d2f;
+  color: #fff;
+}
+
+button.bDark:hover {
+  background-color: #fff;
+  color: #2b2d2f;
+}
+
+/* NAV */
+nav{
+  width:100%;
+  height: 60px;
+  background-color: #2b2d2f;
+}
+
+nav .wrapper {
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1%;
+}
+
+/* CART */
+.cart{
+background-color:white;
+position: relative;
+top: 200px;
+width:300px;
+}
+
+.cart ul {
+list-style-type: none;
+padding:0;
+}
+
+.lineItemImage{
+  width: 75px;
+}
+
+/* HEADER */
+header {
+  width: 100%;
+  height: 60vh;
+  background-color: purple;
+  background-image: url(./assets/amethyst.jpg);
+  background-size: cover;
+}
+
+header .wrapper {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+header .headerContentWrapper {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 
 .productCardImage{
   /* max-width: 200px; */
@@ -25,19 +175,82 @@ h2{
   flex-wrap: wrap;
   flex-direction:row;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 .productCard{
-  max-width: 250px;
+  width: 22.5%;
+  background: #fff;
   display:flex;
   flex-direction:column;
   align-items: center;
-  justify-content: flex-start;
-  margin: 2%;
+  justify-content: space-between;
+  margin: 1.25%;
+  padding: 0 0 25px 0;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.productCard:hover{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .productCardCopy{
   display:flex;
   flex-direction:column;
+}
+
+.productCardCopy{
+  padding: 10px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  /* min-height:125px; */
+}
+
+.cardPricing{
+  display:flex;
+  /* flex-direction:column; */
+  align-items: center;
+}
+
+.cardPrice {
+  margin: 0 5px 0 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.cardTitle{
+  text-align:center;
+}
+
+/* DETAILS PAGE */
+
+.detailsCard{
+  margin: 25px 0;
+  display:flex;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.detailsImage {
+  /* width: 25%; */
+  width:30%;
+}
+
+.detailsCopy {
+  /* width: calc(100% - 350px); */
+  width: 70%;
+  padding: 25px;
+}
+
+.detailsCard img {
+  width: 100%;
+  /* width:400px; */
+  /* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */
+}
+
+p.warning {
+  text-transform: uppercase;
+  font-size: 1rem;
 }

@@ -6,7 +6,7 @@ const LineItem = (props) => {
   const {name, price, salePrice, key, category, description, image, rating, ingredientsList, ingredientsTags} = props.item;
   return (
     <li>
-      <img src={image[0].url} alt={name}/>
+      <img className="lineItemImage" src={image[0].url} alt={name}/>
         <span>{name}</span>
         <span>{displayPrice(price)}</span>
     </li>

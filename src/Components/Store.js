@@ -6,17 +6,25 @@ class Store extends Component {
         super(props);
     };
 
+
+    // filterStoreAll = () => {
+    //   {apiData.map((product, index) => 
+    //     <Product key={`${product.fields.key}`} id={`${product.id}`} product={product.fields} addToCart={addToCart}/>
+    //     )}
+ 
+    // }
+
   render() {
     const { apiData } = this.props;
     const { addToCart } = this.props;
+    console.log(apiData);
     return (
       <>
       <h2>this is a store</h2>
-      <div className="storeList">
-        {apiData.map((product, index) => 
-        <Product key={`${product.fields.key}`} id={`${product.id}`} product={product.fields} addToCart={addToCart}/>
-        )
-        }
+      <div className="storeList wrapper">
+        {apiData.map((product, index) => {
+          return <Product key={`${product.fields.key}`} id={`${product.id}`} product={product.fields} addToCart={addToCart}/>
+        })}
       </div>
       </>
     );

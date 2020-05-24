@@ -10,10 +10,10 @@ const Cart = (props) => {
   }
 
   return lineItems.length ? (
-    <div>
+    <div className="cart">
       <ul>
         {lineItems.map(item => (
-          <LineItem item={item} apiData={apiData} />
+        <LineItem item={item} apiData={apiData} />
         ))}
       </ul>
       <span>Total: {displayPrice(cartTotal(lineItems))}</span>

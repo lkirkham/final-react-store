@@ -64,7 +64,6 @@ addToCart = (product) => {
   })
 }
 
-
 render(){
   return (
     <>
@@ -72,12 +71,11 @@ render(){
         <div className="wrapper">
           <h2 className="logo">the good witch</h2>
           <div className="cartWrapper">
-            <span onClick={this.toggleCart} className="cartToggle"><h2 className="white">Cart ({this.state.lineItems.length})</h2></span>
-            {this.state.cartOpen && <Cart apiData={this.state.data} lineItems={this.state.lineItems} />}
+            <div onClick={this.toggleCart} className="cartToggle"><h2 className="white">Cart ({this.state.lineItems.length})</h2></div>
+            {this.state.cartOpen && <Cart cartOpen={this.state.cartOpen} toggleCart={this.toggleCart} apiData={this.state.data} lineItems={this.state.lineItems} />}
           </div>
         </div>
       </nav>
-      <Welcome />
       <Router>
         <Switch>
         {this.state.data.length

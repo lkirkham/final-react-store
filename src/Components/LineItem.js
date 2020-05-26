@@ -5,10 +5,12 @@ const LineItem = (props) => {
 //   const {item} = props;
   const {name, price, salePrice, key, category, description, image, rating, ingredientsList, ingredientsTags} = props.item;
   return (
-    <li>
+    <li className="lineItem">
       <img className="lineItemImage" src={image[0].url} alt={name}/>
-        <span>{name}</span>
-        <span>{displayPrice(price)}</span>
+        <div className="lineItemCopy">
+          <p>{name}</p>
+          <p>{displayPrice(price)}</p>
+        </div>
     </li>
   )
 }

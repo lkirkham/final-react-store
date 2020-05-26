@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Product from "./Product.js"
+import Welcome from "./Welcome.js"
 
 class Store extends Component {  
     constructor(props) {
@@ -20,7 +21,7 @@ class Store extends Component {
     console.log(apiData);
     return (
       <>
-      <h2>this is a store</h2>
+       <Welcome />
       <div className="storeList wrapper">
         {apiData.map((product, index) => {
           return <Product key={`${product.fields.key}`} id={`${product.id}`} product={product.fields} addToCart={addToCart}/>
